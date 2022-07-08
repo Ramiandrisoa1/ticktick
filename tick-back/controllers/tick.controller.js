@@ -1,28 +1,27 @@
-const User = require('../models/user');
+const Tick = require('../models/tick');
 
-const addUser = async (req, res) => {
+const addTick = async (req, res) => {
   try {
-    const user = new User(req.body);
-    user.save();
+    const tick = new Tick(req.body);
+    tick.save();
     return res.status(201).json({
       message: 'succès',
-      user,
     });
   } catch (error) {
     res.status(400).send(error.message);
   }
 };
 
-const getUser = async (req, res) => {
-  const user = await User.find();
-  User.find()
+const getTick = async (req, res) => {
+  const tick = await Tick.find();
+  Tick.find()
     .then((data) => {
       if (!data) {
         res.status(404).send({
           message: 'user null',
         });
       } else {
-        return res.status(201).json(user);
+        return res.status(201).json(tick);
       }
     })
     .catch((err) => {
@@ -32,9 +31,9 @@ const getUser = async (req, res) => {
     });
 };
 
-const deleteUser = async (req, res) => {
+const deleteTick = async (req, res) => {
   const id = req.params.id;
-  User.findByIdAndRemove(id)
+  Tick.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
         res.status(404).send({
@@ -42,7 +41,7 @@ const deleteUser = async (req, res) => {
         });
       } else {
         res.send({
-          message: 'suppression user avec succes!',
+          message: 'suppression tick avec succes!',
         });
       }
     })
@@ -53,34 +52,34 @@ const deleteUser = async (req, res) => {
     });
 };
 
-const updateUser = async (req, res) => {
+const updateTick = async (req, res) => {
   if (!req.body) {
     return res.status(400).send({
       message: 'Les données à modifiers ne peuvent pas etre vide',
     });
   }
   const id = req.params.id;
-  User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  Tick.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Product with id=${id}. Maybe Product was not found!`,
+          message: `Cannot update tick with id=${id}. Maybe tick was not found!`,
         });
       } else
         res.send({
-          message: `Product  with id=${id} update avec succes.`,
+          message: `tick with id=${id} update avec succes.`,
         });
     })
     .catch((err) => {
       res.status(500).send({
-        message: 'Erreur updating user with id=' + id,
+        message: 'Erreur updating tick with id=' + id,
       });
     });
 };
 
 module.exports = {
-  addUser,
-  getUser,
-  deleteUser,
-  updateUser,
+  addTick,
+  getTick,
+  deleteTick,
+  updateTick,
 };
