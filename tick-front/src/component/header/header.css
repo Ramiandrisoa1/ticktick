@@ -1,0 +1,11 @@
+.Header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  box-shadow: 0px 0px 18px -12px rgb(0 0 0 / 50%);
+}
+
+.link {
+  text-decoration: none;
+  padding: 10px;
+}
