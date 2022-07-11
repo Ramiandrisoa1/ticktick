@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 import { ShowContext } from '../../page/tick';
-// import FormAddEdit from '../form/form';
+import FormAddEdit from '../form/form';
 import tickService from '../../service/tick.service';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -67,7 +67,9 @@ function Modals() {
                   <Modal.Header closeButton>
                     <Modal.Title>Modification</Modal.Title>
                   </Modal.Header>
-                  <Modal.Body>{/* <FormAddEdit /> */}</Modal.Body>
+                  <Modal.Body>
+                    <FormAddEdit />
+                  </Modal.Body>
                   <Modal.Footer>
                     <button className='btn-cancel' onClick={value.handleClose}>
                       Close
@@ -88,7 +90,9 @@ function Modals() {
                   <Modal.Header closeButton>
                     <Modal.Title>Ajout</Modal.Title>
                   </Modal.Header>
-                  <Modal.Body>{/* <FormAddEdit /> */}</Modal.Body>
+                  <Modal.Body>
+                    <FormAddEdit />
+                  </Modal.Body>
                   <Modal.Footer>
                     <button className='btn-cancel' onClick={value.handleClose}>
                       Close
