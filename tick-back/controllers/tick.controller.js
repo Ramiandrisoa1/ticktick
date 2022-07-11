@@ -6,6 +6,7 @@ const addTick = async (req, res) => {
     tick.save();
     return res.status(201).json({
       message: 'succès',
+      tick,
     });
   } catch (error) {
     res.status(400).send(error.message);
