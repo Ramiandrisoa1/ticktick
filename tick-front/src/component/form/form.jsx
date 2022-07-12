@@ -8,6 +8,7 @@ import './form.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import AsyncSelect from 'react-select/async';
 
 function FormAddEdit() {
   const validationSchema = Yup.object().shape({
@@ -19,10 +20,7 @@ function FormAddEdit() {
       .required('Ce champ est obligatoire')
       .min(3, 'Trop court !')
       .max(25, 'Trop long!'),
-    responsable: Yup.string()
-      .required('Ce champ est obligatoire')
-      .min(3, 'Trop courte !')
-      .max(25, 'Trop long !'),
+    responsable: Yup.string().required('Ce champ est obligatoire'),
     test: Yup.string()
       .required('Ce champ est obligatoire')
       .min(3, 'Trop courte !')
@@ -46,8 +44,20 @@ function FormAddEdit() {
 
   const [tick, setTick] = useState(initialState);
 
+  const loadOptions = async (inputText, callback) => {
+    const response = await fetch(
+      `http://localhost:8080/api/list-tick?node=${inputText}`
+    );
+    const json = await response.json();
+    callback(json.map((i) => ({ label: i.node, value: i._id })));
+  };
+
   const handleChange = ({ target: { value, name } }) => {
     setTick({ ...tick, [name]: value });
+  };
+
+  const onChange = (value) => {
+    setTick({ ...tick, responsable: value.label });
   };
 
   function handleSubmitAddEdit(event) {
@@ -133,7 +143,7 @@ function FormAddEdit() {
           controlId='formBasicResponsable'
         >
           <Form.Label>Responsable</Form.Label>
-          <Form.Control
+          {/* <Form.Control
             className='form-ctrl'
             type='text'
             placeholder='Entrer Responsable'
@@ -141,6 +151,12 @@ function FormAddEdit() {
             value={tick.responsable}
             {...register('responsable')}
             onChange={handleChange}
+          /> */}
+          <AsyncSelect
+            value={tick.responsable.label}
+            onChange={onChange}
+            loadOptions={loadOptions}
+            {...register('responsable')}
           />
           <small className='text-danger'>{errors.responsable?.message}</small>
         </Form.Group>
