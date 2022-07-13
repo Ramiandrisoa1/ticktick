@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  Navbar,
-  Container,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-} from 'react-bootstrap';
+import { Navbar, Container, Nav, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import MyImage from '../../assets/images/logo.png';
 import './header.css';
 
 function Header() {
@@ -15,7 +9,9 @@ function Header() {
     <div className='Header'>
       <Navbar bg='light' expand='lg'>
         <Container fluid>
-          {/* <Navbar.Brand href='#'></Navbar.Brand> */}
+          <Navbar.Brand href='#'>
+            <img className='image-logo' src={MyImage} alt='' />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbarScroll' />
           <Navbar.Collapse id='navbarScroll'>
             <Nav
@@ -30,15 +26,17 @@ function Header() {
                 Tick
               </Link>
             </Nav>
-            <Form className='d-flex'>
-              <FormControl
-                type='search'
-                placeholder='Search'
-                className='me-2'
-                aria-label='Search'
-              />
-              <Button variant='outline-success'>Search</Button>
-            </Form>
+            <Dropdown>
+              <Dropdown.Toggle variant='success' id='dropdown-basic'>
+                <img className='image-avatar' src={MyImage} alt='' />
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href='#/action-1'>Blabla</Dropdown.Item>
+                <Dropdown.Item href='#/action-2'>Abla</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href='#/action-3'>Disconnect</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Navbar.Collapse>
         </Container>
       </Navbar>

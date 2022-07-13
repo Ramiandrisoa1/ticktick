@@ -6,6 +6,7 @@ import './page.css';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Form, FormControl, Button } from 'react-bootstrap';
 
 const ShowContext = createContext();
 
@@ -69,6 +70,15 @@ function Tick() {
       <div className='tbl-content'>
         <div className='btn-add-content'>
           <h1>Listes</h1>
+          <Form className='d-flex'>
+            <FormControl
+              type='search'
+              placeholder='Search'
+              className='me-2'
+              aria-label='Search'
+            />
+            <Button variant='outline-success'>Search</Button>
+          </Form>
           <button className='btn-add' onClick={addTick}>
             <FontAwesomeIcon className='add-icon' icon={faPlus} />
             Ajouter
