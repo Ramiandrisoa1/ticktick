@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import tickService from '../../service/tick.service';
 import { ShowContext } from '../../page/tick';
@@ -8,7 +8,6 @@ import './form.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import AsyncSelect from 'react-select/async';
 
 function FormAddEdit() {
   const validationSchema = Yup.object().shape({
@@ -35,6 +34,7 @@ function FormAddEdit() {
   const { errors } = formState;
 
   const value = useContext(ShowContext);
+
   const initialState = {
     node: value.dataEdit ? value.dataEdit.node : '',
     equipe: value.dataEdit ? value.dataEdit.equipe : '',
@@ -42,22 +42,18 @@ function FormAddEdit() {
     test: value.dataEdit ? value.dataEdit.test : '',
   };
 
-  const [tick, setTick] = useState(initialState);
+  const [selectRsbl, setSelectRsbl] = useState([]);
 
-  const loadOptions = async (inputText, callback) => {
-    const response = await fetch(
-      `http://localhost:8080/api/list-tick?node=${inputText}`
-    );
-    const json = await response.json();
-    callback(json.map((i) => ({ label: i.node, value: i._id })));
-  };
+  useEffect(() => {
+    tickService.getAllTick().then((res) => {
+      setSelectRsbl(res);
+    });
+  }, []);
+
+  const [tick, setTick] = useState(initialState);
 
   const handleChange = ({ target: { value, name } }) => {
     setTick({ ...tick, [name]: value });
-  };
-
-  const onChange = (value) => {
-    setTick({ ...tick, responsable: value.label });
   };
 
   function handleSubmitAddEdit(event) {
@@ -143,21 +139,22 @@ function FormAddEdit() {
           controlId='formBasicResponsable'
         >
           <Form.Label>Responsable</Form.Label>
-          {/* <Form.Control
-            className='form-ctrl'
+          <select
+            className='custom-select d-block w-100'
+            id='responsable'
             type='text'
             placeholder='Entrer Responsable'
             name='responsable'
             value={tick.responsable}
             {...register('responsable')}
             onChange={handleChange}
-          /> */}
-          <AsyncSelect
-            value={tick.responsable.label}
-            onChange={onChange}
-            loadOptions={loadOptions}
-            {...register('responsable')}
-          />
+          >
+            {selectRsbl.map((option) => (
+              <React.Fragment key={option._id}>
+                <option value={option.node}>{option.node}</option>
+              </React.Fragment>
+            ))}
+          </select>
           <small className='text-danger'>{errors.responsable?.message}</small>
         </Form.Group>
         <Form.Group className='form-groupp mb-3' controlId='formBasicTest'>
