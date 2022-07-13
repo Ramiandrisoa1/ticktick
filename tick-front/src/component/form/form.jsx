@@ -57,7 +57,6 @@ function FormAddEdit() {
 
   const handleChange = ({ target: { value, name } }) => {
     setTick({ ...tick, [name]: value });
-    console.log(name, value);
   };
 
   function handleSubmitAddEdit(event) {
