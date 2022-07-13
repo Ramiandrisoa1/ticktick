@@ -19,21 +19,24 @@ function FormAddEdit() {
       .required('Ce champ est obligatoire')
       .min(3, 'Trop court !')
       .max(25, 'Trop long!'),
-    responsable: Yup.string().required('Ce champ est obligatoire'),
+    responsable: Yup.string().required('Veuillez choisir une resp'),
     test: Yup.string()
       .required('Ce champ est obligatoire')
       .min(3, 'Trop courte !')
       .max(25, 'Trop long !'),
   });
 
+  const value = useContext(ShowContext);
+
   const { register, formState, handleSubmit, reset } = useForm({
     mode: 'all',
     resolver: yupResolver(validationSchema),
+    defaultValues: {
+      responsable: value.dataEdit ? value.dataEdit.responsable : '',
+    },
   });
 
   const { errors } = formState;
-
-  const value = useContext(ShowContext);
 
   const initialState = {
     node: value.dataEdit ? value.dataEdit.node : '',
@@ -54,6 +57,7 @@ function FormAddEdit() {
 
   const handleChange = ({ target: { value, name } }) => {
     setTick({ ...tick, [name]: value });
+    console.log(name, value);
   };
 
   function handleSubmitAddEdit(event) {
@@ -141,14 +145,15 @@ function FormAddEdit() {
           <Form.Label>Responsable</Form.Label>
           <select
             className='custom-select d-block w-100'
-            id='responsable'
             type='text'
-            placeholder='Entrer Responsable'
             name='responsable'
             value={tick.responsable}
             {...register('responsable')}
             onChange={handleChange}
           >
+            <option value='' hidden>
+              --Choisir--
+            </option>
             {selectRsbl.map((option) => (
               <React.Fragment key={option._id}>
                 <option value={option.node}>{option.node}</option>
