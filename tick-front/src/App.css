@@ -1,4 +1,10 @@
 .main-conten {
-  height: 100%;
   margin-top: 60px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 }
