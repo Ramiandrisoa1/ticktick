@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Container, Nav, Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import MyImage from '../../assets/images/logo.png';
 import './header.css';
 
@@ -19,12 +19,17 @@ function Header() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Link className='link' to='/'>
+              <NavLink
+                exact={true}
+                className='link'
+                activeClassName='is-active'
+                to='/'
+              >
                 Home
-              </Link>
-              <Link className='link' to='/tick'>
+              </NavLink>
+              <NavLink className='link' activeClassName='is-active' to='/tick'>
                 Tick
-              </Link>
+              </NavLink>
             </Nav>
             <Dropdown>
               <Dropdown.Toggle variant='success' id='dropdown-basic'>
@@ -32,6 +37,7 @@ function Header() {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href='#/action-1'>Blabla</Dropdown.Item>
+                <Dropdown.Divider />
                 <Dropdown.Item href='#/action-2'>Abla</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item href='#/action-3'>Disconnect</Dropdown.Item>

@@ -14,11 +14,18 @@
 }
 .btn-add-content {
   display: flex;
-  height: 100px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+}
+@media screen and (max-width: 650px) {
+  .btn-add-content {
+    flex-direction: column;
+  }
+  .search-content {
+    margin-bottom: 20px;
+  }
 }
 
 .add-icon {
@@ -105,11 +112,13 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  width: 325px;
 }
 
 .search-check {
   display: flex;
   justify-content: space-between;
+  margin: 6px 0 10px;
 }
 
 .img-empty-content {
@@ -121,4 +130,8 @@
 .img-empty {
   width: 300px;
   height: 250px;
+}
+
+.check-fltr {
+  margin-right: 5px;
 }

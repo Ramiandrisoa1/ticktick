@@ -135,19 +135,39 @@ function Tick() {
             <strong>Filtrer par :</strong>
             <div onChange={onChangeValue} className='search-check'>
               <label>
-                <input type='radio' value='node' name='search' />
+                <input
+                  className='check-fltr'
+                  type='radio'
+                  value='node'
+                  name='search'
+                />
                 Node
               </label>
               <label>
-                <input type='radio' value='equipe' name='search' />
+                <input
+                  className='check-fltr'
+                  type='radio'
+                  value='equipe'
+                  name='search'
+                />
                 Equipe
               </label>
               <label>
-                <input type='radio' value='responsable' name='search' />
+                <input
+                  className='check-fltr'
+                  type='radio'
+                  value='responsable'
+                  name='search'
+                />
                 Responsable
               </label>
               <label>
-                <input type='radio' value='test' name='search' />
+                <input
+                  className='check-fltr'
+                  type='radio'
+                  value='test'
+                  name='search'
+                />
                 Test
               </label>
             </div>

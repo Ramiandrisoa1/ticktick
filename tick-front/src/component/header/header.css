@@ -2,17 +2,39 @@
   position: fixed;
   width: 100%;
   top: 0;
-  box-shadow: 0px 0px 18px -12px rgb(0 0 0 / 50%);
+  z-index: 20;
 }
 
 .link {
   text-decoration: none;
   padding: 10px;
+  color: #fff;
+}
+
+.link:hover {
+  color: #000;
+}
+
+@media screen and (max-width: 992px) {
+  .link {
+    border-top: 1px solid #b9b9b9;
+  }
+  .link {
+    border-bottom: 1px solid #b9b9b9;
+  }
+  .dropdown {
+    margin: 10px 0;
+  }
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
 }
 
 .image-logo {
-  width: 35px;
-  height: 25px;
+  width: 50px;
+  height: 35px;
+  border: 2px solid #fff;
+  border-radius: 5px;
 }
 
 .dropdown-toggle {
@@ -29,10 +51,57 @@
   border-radius: 50%;
   top: 0;
   left: 0;
+  border: 2px solid #fff;
 }
 
 @media screen and (min-width: 992px) {
   .dropdown-menu {
     left: -115px !important;
   }
+}
+
+.navbar {
+  padding: 0;
+}
+
+.container-fluid {
+  background: #3c4444;
+  box-shadow: 0px 0px 6px 4px rgb(0 0 0 / 50%);
+}
+
+.navbar-toggler {
+  height: 25px;
+  width: 25px;
+  position: relative;
+  background: #fff;
+}
+
+.navbar-toggler-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+}
+
+.navbar-brand {
+  padding: 10px 0;
+}
+
+.dropdown-menu {
+  box-shadow: -2px 2px 2px rgb(0 0 0 / 10%);
+}
+
+.is-active {
+  background: #fff;
+  color: #3c4444;
+  border-radius: 5px;
+  padding: 0 10px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
 }
