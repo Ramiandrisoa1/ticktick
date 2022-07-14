@@ -15,10 +15,7 @@ function FormAddEdit() {
       .required('Ce champ est obligatoire')
       .min(3, 'Trop court !')
       .max(25, 'Trop long!'),
-    equipe: Yup.string()
-      .required('Ce champ est obligatoire')
-      .min(3, 'Trop court !')
-      .max(25, 'Trop long!'),
+    equipe: Yup.string().required('Veuillez choisir une équipe'),
     responsable: Yup.string().required('Veuillez choisir une resp'),
     test: Yup.string()
       .required('Ce champ est obligatoire')
@@ -33,6 +30,7 @@ function FormAddEdit() {
     resolver: yupResolver(validationSchema),
     defaultValues: {
       responsable: value.dataEdit ? value.dataEdit.responsable : '',
+      equipe: value.dataEdit ? value.dataEdit.equipe : '',
     },
   });
 
@@ -126,15 +124,23 @@ function FormAddEdit() {
         </Form.Group>
         <Form.Group className='form-groupp mb-3' controlId='formBasicEquipe'>
           <Form.Label>Equipe</Form.Label>
-          <Form.Control
-            className='form-ctrl'
+          <select
+            className='custom-select d-block w-100'
             type='text'
-            placeholder='Entrer Equipe'
             name='equipe'
             value={tick.equipe}
             {...register('equipe')}
             onChange={handleChange}
-          />
+          >
+            <option value='' hidden>
+              --Choisir équipe--
+            </option>
+            {selectRsbl.map((option) => (
+              <React.Fragment key={option._id}>
+                <option value={option.node}>{option.node}</option>
+              </React.Fragment>
+            ))}
+          </select>
           <small className='text-danger'>{errors.equipe?.message}</small>
         </Form.Group>
         <Form.Group
@@ -151,7 +157,7 @@ function FormAddEdit() {
             onChange={handleChange}
           >
             <option value='' hidden>
-              --Choisir--
+              --Choisir responsable--
             </option>
             {selectRsbl.map((option) => (
               <React.Fragment key={option._id}>
