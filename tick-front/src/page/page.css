@@ -14,10 +14,11 @@
 }
 .btn-add-content {
   display: flex;
-  height: 50px;
+  height: 100px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .add-icon {
@@ -80,4 +81,44 @@
   background: #ffde00;
   border-color: #ffde00;
   color: #b22222;
+}
+
+.search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.form-search {
+  position: relative;
+}
+.form-ctrl {
+  padding-left: 30px;
+}
+
+.form-ctrl:disabled {
+  cursor: not-allowed;
+}
+
+.search-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.search-check {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-empty-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.img-empty {
+  width: 300px;
+  height: 250px;
 }

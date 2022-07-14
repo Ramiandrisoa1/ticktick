@@ -5,8 +5,14 @@ import Table from 'react-bootstrap/Table';
 import './page.css';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencil, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Form, FormControl, Button } from 'react-bootstrap';
+import {
+  faPencil,
+  faPlus,
+  faTrash,
+  faMagnifyingGlass,
+} from '@fortawesome/free-solid-svg-icons';
+import { Form, FormControl } from 'react-bootstrap';
+import imgEmpty from '../assets/images/vide.webp';
 
 const ShowContext = createContext();
 
@@ -48,7 +54,36 @@ function Tick() {
     });
   }, []);
 
-  const listTick = ticks.map((tick) => (
+  const [search, setNewSearch] = useState('');
+
+  const handleSearchChange = (e) => {
+    setNewSearch(e.target.value);
+  };
+
+  const [typeSearch, setTypeSearch] = useState('');
+
+  const onChangeValue = (event) => {
+    setTypeSearch(event.target.value);
+  };
+
+  const filtered = !search
+    ? ticks
+    : ticks.filter((tick) => {
+        if (typeSearch === 'node') {
+          return tick.node.toLowerCase().includes(search.toLowerCase());
+        }
+        if (typeSearch === 'equipe') {
+          return tick.equipe.toLowerCase().includes(search.toLowerCase());
+        }
+        if (typeSearch === 'responsable') {
+          return tick.responsable.toLowerCase().includes(search.toLowerCase());
+        }
+        if (typeSearch === 'test') {
+          return tick.test.toLowerCase().includes(search.toLowerCase());
+        }
+      });
+
+  const listTick = filtered.map((tick) => (
     <tr key={tick._id}>
       <td className='tbody-td'>{tick.node}</td>
       <td className='tbody-td'>{tick.equipe}</td>
@@ -64,21 +99,72 @@ function Tick() {
       </td>
     </tr>
   ));
+
+  const Affiche = () => {
+    if (listTick.length === 0) {
+      return (
+        <div className='img-empty-content'>
+          <img className='img-empty' src={imgEmpty} alt='' />
+        </div>
+      );
+    } else {
+      return (
+        <Table striped bordered hover>
+          <thead className='tb-thead'>
+            <tr>
+              <th>Node</th>
+              <th>Equipe</th>
+              <th>Responsable</th>
+              <th>Test</th>
+              <th className='action'>Action</th>
+            </tr>
+          </thead>
+          <tbody className='tb-tbody'>{listTick}</tbody>
+        </Table>
+      );
+    }
+  };
+
   return (
     <>
       <ToastContainer />
       <div className='tbl-content'>
         <div className='btn-add-content'>
           <h1>Listes</h1>
-          <Form className='d-flex'>
-            <FormControl
-              type='search'
-              placeholder='Search'
-              className='me-2'
-              aria-label='Search'
-            />
-            <Button variant='outline-success'>Search</Button>
-          </Form>
+          <div className='search-content'>
+            <strong>Filtrer par :</strong>
+            <div onChange={onChangeValue} className='search-check'>
+              <label>
+                <input type='radio' value='node' name='search' />
+                Node
+              </label>
+              <label>
+                <input type='radio' value='equipe' name='search' />
+                Equipe
+              </label>
+              <label>
+                <input type='radio' value='responsable' name='search' />
+                Responsable
+              </label>
+              <label>
+                <input type='radio' value='test' name='search' />
+                Test
+              </label>
+            </div>
+            <Form className='d-flex form-search'>
+              <FontAwesomeIcon
+                className='search-icon'
+                icon={faMagnifyingGlass}
+              />
+              <FormControl
+                className='form-ctrl'
+                type='text'
+                value={search}
+                onChange={handleSearchChange}
+                disabled={!typeSearch}
+              />
+            </Form>
+          </div>
           <button className='btn-add' onClick={addTick}>
             <FontAwesomeIcon className='add-icon' icon={faPlus} />
             Ajouter
@@ -97,18 +183,7 @@ function Tick() {
         >
           <Modals />
         </ShowContext.Provider>
-        <Table striped bordered hover>
-          <thead className='tb-thead'>
-            <tr>
-              <th>Node</th>
-              <th>Equipe</th>
-              <th>Responsable</th>
-              <th>Test</th>
-              <th className='action'>Action</th>
-            </tr>
-          </thead>
-          <tbody className='tb-tbody'>{listTick}</tbody>
-        </Table>
+        <Affiche />
       </div>
     </>
   );
