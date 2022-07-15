@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const tickRoutes = require('./routes/tick.route');
+const userRoutes = require('./routes/userList.route');
 
 mongoose
   .connect('mongodb://localhost:27017/user', {
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api', tickRoutes.routes);
+app.use('/alfred', userRoutes.routes);
 
 app.listen(process.env.PORT, () =>
   console.log('app is listening on url http://localhost:' + process.env.PORT)
