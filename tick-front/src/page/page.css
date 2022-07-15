@@ -129,6 +129,7 @@
   display: flex;
   justify-content: space-between;
   margin: 6px 0 10px;
+  color: #202b36;
 }
 
 .img-empty-content {
@@ -144,4 +145,8 @@
 
 .check-fltr {
   margin-right: 5px;
+}
+
+.filter {
+  color: #202b36;
 }

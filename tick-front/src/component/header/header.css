@@ -98,7 +98,11 @@
 
 .is-active {
   background: #fff;
-  color: #3c4444;
+  color: #202b36;
   border-radius: 5px;
   padding: 0 10px;
+}
+
+.brop-men {
+  color: #202b36;
 }

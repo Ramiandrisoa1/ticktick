@@ -132,7 +132,7 @@ function Tick() {
         <div className='btn-add-content'>
           <h1 className='title-1'>Listes</h1>
           <div className='search-content'>
-            <strong>Filtrer par :</strong>
+            <strong className='filter'>Filtrer par :</strong>
             <div onChange={onChangeValue} className='search-check'>
               <label>
                 <input

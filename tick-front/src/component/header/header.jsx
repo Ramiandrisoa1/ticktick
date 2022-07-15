@@ -36,11 +36,17 @@ function Header() {
                 <img className='image-avatar' src={MyImage} alt='' />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item href='#/action-1'>Blabla</Dropdown.Item>
+                <Dropdown.Item className='brop-men' href='#/action-1'>
+                  Blabla
+                </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item href='#/action-2'>Abla</Dropdown.Item>
+                <Dropdown.Item className='brop-men' href='#/action-2'>
+                  Abla
+                </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item href='#/action-3'>Disconnect</Dropdown.Item>
+                <Dropdown.Item className='brop-men' href='#/action-3'>
+                  Disconnect
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Collapse>
