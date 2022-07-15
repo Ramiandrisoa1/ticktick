@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api', tickRoutes.routes);
-app.use('/alfred', userRoutes.routes);
+app.use('/api/alfred', userRoutes.routes);
 
 app.listen(process.env.PORT, () =>
   console.log('app is listening on url http://localhost:' + process.env.PORT)
