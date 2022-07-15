@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import tickService from '../../service/tick.service';
+import usersService from '../../service/user.service';
 import { ShowContext } from '../../page/tick';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,10 +47,16 @@ function FormAddEdit() {
   const [selectRsbl, setSelectRsbl] = useState([]);
 
   useEffect(() => {
-    tickService.getAllTick().then((res) => {
-      setSelectRsbl(res);
+    usersService.getAllUser().then((res) => {
+      const data = res.response;
+      setSelectRsbl(data);
     });
   }, []);
+
+  var keys = Object.keys(selectRsbl);
+  var selectRsblValues = keys.map(function (key) {
+    return selectRsbl[key];
+  });
 
   const [tick, setTick] = useState(initialState);
 
@@ -135,9 +142,11 @@ function FormAddEdit() {
             <option value='' hidden>
               --Choisir équipe--
             </option>
-            {selectRsbl.map((option) => (
-              <React.Fragment key={option._id}>
-                <option value={option.node}>{option.node}</option>
+            {selectRsblValues.map((option) => (
+              <React.Fragment key={option.Matricule}>
+                <option value={`${option.Prenom} ${option.Nom}`}>
+                  {`${option.Prenom}  ${option.Nom}`}
+                </option>
               </React.Fragment>
             ))}
           </select>
@@ -159,9 +168,11 @@ function FormAddEdit() {
             <option value='' hidden>
               --Choisir responsable--
             </option>
-            {selectRsbl.map((option) => (
-              <React.Fragment key={option._id}>
-                <option value={option.node}>{option.node}</option>
+            {selectRsblValues.map((option) => (
+              <React.Fragment key={option.Matricule}>
+                <option value={`${option.Prenom} ${option.Nom}`}>
+                  {`${option.Prenom}  ${option.Nom}`}
+                </option>
               </React.Fragment>
             ))}
           </select>
