@@ -1,7 +1,7 @@
 .btn-submit {
   margin: 0 10px;
-  background: #00713d;
-  border-color: #00713d;
+  background: #34a0b0;
+  border-color: #34a0b0;
   color: #fff;
   font-size: 15px;
   font-weight: bold;
@@ -11,13 +11,13 @@
 .btn-submit:hover {
   background: #fff;
   border-color: #fff;
-  color: #00713d;
+  color: #34a0b0;
 }
 
 .btn-cancel {
   margin: 0 10px;
-  background: #b22222;
-  border-color: #b22222;
+  background: #c93611;
+  border-color: #c93611;
   color: #fff;
   font-size: 15px;
   font-weight: bold;
@@ -27,5 +27,5 @@
 .btn-cancel:hover {
   background: #fff;
   border-color: #fff;
-  color: #b22222;
+  color: #c93611;
 }

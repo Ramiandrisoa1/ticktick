@@ -130,7 +130,7 @@ function Tick() {
       <ToastContainer />
       <div className='tbl-content'>
         <div className='btn-add-content'>
-          <h1>Listes</h1>
+          <h1 className='title-1'>Listes</h1>
           <div className='search-content'>
             <strong>Filtrer par :</strong>
             <div onChange={onChangeValue} className='search-check'>
@@ -177,7 +177,7 @@ function Tick() {
                 icon={faMagnifyingGlass}
               />
               <FormControl
-                className='form-ctrl'
+                className='form-ctrl-search'
                 type='text'
                 value={search}
                 onChange={handleSearchChange}
