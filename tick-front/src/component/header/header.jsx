@@ -25,7 +25,7 @@ function Header() {
                 activeClassName='is-active'
                 to='/'
               >
-                Home
+                Alarme
               </NavLink>
               <NavLink className='link' activeClassName='is-active' to='/tick'>
                 Tick
