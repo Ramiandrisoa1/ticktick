@@ -9,8 +9,8 @@ function Alarme() {
       .then((text) => {
         const textSplit = text.split('\n');
         const finalValue = [];
-        let obj = {}
         textSplit.map((text, index) => {
+          const obj = {}
           if (text.includes('SAE') && !text.includes('>')) {
             const textTmp = text.split(/((?:\w+ ){1})/g).map((data) => {
               if (data.replace(/\s/g, '') !== '') {
@@ -22,11 +22,11 @@ function Alarme() {
               if (data.replace(/\s/g, '') !== '') {
                 return data.replace(/\s/g, '');
               }
-            }).filter((data) => data !== undefined)
-
+            }).filter((data) => data !== undefined);
             for (let i = 0; i < 7; i++) {
               obj[textTmp[i]] = value[i]
             }
+            // console.log(obj);
             finalValue.push(obj)
           }
 
@@ -43,12 +43,7 @@ function Alarme() {
         // });
       });
   }, []);
-  function isEmpty(strValue) {
-    // Test whether strValue is empty
-    if (!strValue || strValue.trim() === "" || (strValue.trim()).length === 0) {
-      //do something
-    }
-  }
+
   return (
     <div className='Alarme'>
       <button>ok</button>
