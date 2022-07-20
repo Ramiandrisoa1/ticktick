@@ -3,7 +3,6 @@ import file from '../../src/assets/file/testOutput.txt';
 
 function Alarme() {
   useEffect(() => {
-    console.log('ray');
     fetch(file)
       .then((r) => r.text())
       .then((text) => {
@@ -15,7 +14,7 @@ function Alarme() {
             const textTmp = text
               .split(/((?:\w+ ){1})/g)
               .map((data) => {
-                if (data.replace(/\s/g, '')) {
+                if (data.replace(/\s/g, '') !== '') {
                   return data.replace(/\s/g, '');
                 }
               })
