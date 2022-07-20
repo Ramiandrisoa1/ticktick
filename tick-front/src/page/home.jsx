@@ -3,6 +3,7 @@ import file from '../../src/assets/file/testOutput.txt';
 
 function Alarme() {
   useEffect(() => {
+    console.log('ray');
     fetch(file)
       .then((r) => r.text())
       .then((text) => {
