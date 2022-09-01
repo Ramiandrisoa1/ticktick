@@ -8,7 +8,7 @@ const tickRoutes = require('./routes/tick.route');
 const userRoutes = require('./routes/userList.route');
 
 mongoose
-  .connect('mongodb://localhost:27017/user', {
+  .connect('mongodb://localhost:27017/ticket', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
